@@ -78,13 +78,13 @@ void ClientSC::GetSensor(int sensor, int interval) {
         emit sendMessage("stop");
         switch(sensor) {
         case 1:
-            emit sendMessage("rota " + QString::number(interval));
+            emit sendMessage("1 " + QString::number(interval));
             break;
         case 2:
-            emit sendMessage("gyro " + QString::number(interval));
+            emit sendMessage("2" + QString::number(interval));
             break;
         case 3:
-            emit sendMessage("accel " + QString::number(interval));
+            emit sendMessage("3 " + QString::number(interval));
             break;
         //default:
         }

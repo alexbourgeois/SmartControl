@@ -14,14 +14,14 @@ QT_FORWARD_DECLARE_CLASS(QBluetoothSocket)
 
 QT_USE_NAMESPACE
 
-class bluetoothServer : public QObject
+class BluetoothServer : public QObject
 {
     Q_OBJECT
 
 public:
    // explicit bluetoothServer(QObject *parent = 0);
-    bluetoothServer();
-    ~bluetoothServer();
+    BluetoothServer();
+    ~BluetoothServer();
 
     //void startServer(const QBluetoothAddress &localAdapter = QBluetoothAddress());
     void startServer(const QBluetoothAddress &localAdapter);
@@ -37,7 +37,6 @@ signals:
 
 public slots:
     void sendMessage(const QString &message);
-    void trash(QBluetoothServer::Error);
 
 private slots:
     void clientConnected();

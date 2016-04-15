@@ -15,11 +15,11 @@ TEMPLATE = app
 SOURCES += main.cpp\
     bluetoothserver.cpp \
     MainWindow.cpp \
-    serveursc.cpp
+    serversc.cpp
 
 HEADERS  += \
     bluetoothserver.h \
     MainWindow.h \
-    serveursc.h
+    serversc.h
 
 FORMS    += mainwindow.ui

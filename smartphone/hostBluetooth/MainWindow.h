@@ -2,13 +2,14 @@
 #define MainWindow_H
 
 #include <QMainWindow>
-#include "bluetoothserver.h"
 #include <QSensor>
 #include <QRotationSensor>
 #include <QGyroscope>
 #include <QAccelerometer>
 #include <QAmbientLightSensor>
 #include <QTime>
+
+#include "serversc.h"
 
 namespace Ui {
 class MainWindow;
@@ -24,29 +25,16 @@ public:
     void debug(QString msg);
 
 private slots:
-    void analyzeMessage(const QString &sender, const QString &message);
-    void erreurServeur(QString);
-    void clientConnected();
-    void checkReadingGyro();
-
-    void on_pushButton_start_clicked();
-    void on_pushButton_ok_clicked();
-
-
-    void on_pushButton_ok_2_clicked();
+    void connectionState(int);
+    void on_pB_Start_clicked();
+    void on_pB_Stop_clicked();
 
 signals:
     void sendMessage(const QString &message);
 
 private:
-    bool readyToSend = false;
     Ui::MainWindow *ui;
-    bluetoothServer *server;
-    QSensor *sensor;
-    QTime *timer;
-
-    double trash;
-    int timerVal=0;
+    ServerSC *serverSC;
 };
 
 #endif // MainWindow_H

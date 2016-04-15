@@ -50,13 +50,17 @@ OBJECTS_DIR   = ./
 
 SOURCES       = main.cpp \
 		bluetoothserver.cpp \
-		MainWindow.cpp moc_bluetoothserver.cpp \
-		moc_MainWindow.cpp
+		MainWindow.cpp \
+		serversc.cpp moc_bluetoothserver.cpp \
+		moc_MainWindow.cpp \
+		moc_serversc.cpp
 OBJECTS       = main.o \
 		bluetoothserver.o \
 		MainWindow.o \
+		serversc.o \
 		moc_bluetoothserver.o \
-		moc_MainWindow.o
+		moc_MainWindow.o \
+		moc_serversc.o
 DIST          = /home/asi/Programmes/Qt/5.6/android_armv7/mkspecs/features/spec_pre.prf \
 		/home/asi/Programmes/Qt/5.6/android_armv7/mkspecs/common/unix.conf \
 		/home/asi/Programmes/Qt/5.6/android_armv7/mkspecs/common/linux.conf \
@@ -179,9 +183,11 @@ DIST          = /home/asi/Programmes/Qt/5.6/android_armv7/mkspecs/features/spec_
 		/home/asi/Programmes/Qt/5.6/android_armv7/mkspecs/features/yacc.prf \
 		/home/asi/Programmes/Qt/5.6/android_armv7/mkspecs/features/lex.prf \
 		hostBluetooth.pro bluetoothserver.h \
-		MainWindow.h main.cpp \
+		MainWindow.h \
+		serversc.h main.cpp \
 		bluetoothserver.cpp \
-		MainWindow.cpp
+		MainWindow.cpp \
+		serversc.cpp
 QMAKE_TARGET  = libhostBluetooth.so
 DESTDIR       = 
 TARGET        = libhostBluetooth.so
@@ -462,8 +468,8 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents bluetoothserver.h MainWindow.h $(DISTDIR)/
-	$(COPY_FILE) --parents main.cpp bluetoothserver.cpp MainWindow.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents bluetoothserver.h MainWindow.h serversc.h $(DISTDIR)/
+	$(COPY_FILE) --parents main.cpp bluetoothserver.cpp MainWindow.cpp serversc.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents mainwindow.ui $(DISTDIR)/
 
 
@@ -487,9 +493,9 @@ check: first
 
 compiler_rcc_make_all:
 compiler_rcc_clean:
-compiler_moc_header_make_all: moc_bluetoothserver.cpp moc_MainWindow.cpp
+compiler_moc_header_make_all: moc_bluetoothserver.cpp moc_MainWindow.cpp moc_serversc.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_bluetoothserver.cpp moc_MainWindow.cpp
+	-$(DEL_FILE) moc_bluetoothserver.cpp moc_MainWindow.cpp moc_serversc.cpp
 moc_bluetoothserver.cpp: /home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QDebug \
 		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qdebug.h \
 		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qalgorithms.h \
@@ -700,42 +706,13 @@ moc_MainWindow.cpp: /home/asi/Programmes/Qt/5.6/android_armv7/include/QtWidgets/
 		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtGui/qtouchdevice.h \
 		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtWidgets/qtabwidget.h \
 		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtGui/qicon.h \
-		bluetoothserver.h \
-		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QDebug \
-		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/QBluetoothAddress \
-		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetoothaddress.h \
-		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetoothglobal.h \
-		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QByteArray \
-		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QString \
-		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QMetaType \
-		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/QBluetoothServer \
-		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetoothserver.h \
-		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QObject \
-		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetooth.h \
-		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/QBluetoothSocket \
-		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetoothsocket.h \
-		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetoothuuid.h \
-		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QtGlobal \
-		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QUuid \
-		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/quuid.h \
-		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetoothserviceinfo.h \
-		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/QBluetoothUuid \
-		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QList \
-		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QSharedPointer \
-		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QVariant \
-		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtNetwork/qabstractsocket.h \
-		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/QBluetoothServiceInfo \
-		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/QBluetoothLocalDevice \
-		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetoothlocaldevice.h \
-		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/QBluetoothHostInfo \
-		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetoothhostinfo.h \
-		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/QBluetoothDeviceDiscoveryAgent \
-		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetoothdevicediscoveryagent.h \
-		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/QBluetoothDeviceInfo \
-		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetoothdeviceinfo.h \
 		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtSensors/QSensor \
 		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtSensors/qsensor.h \
 		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtSensors/qsensorsglobal.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QObject \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QByteArray \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QMetaType \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QVariant \
 		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QPair \
 		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtSensors/QRotationSensor \
 		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtSensors/qrotationsensor.h \
@@ -747,8 +724,152 @@ moc_MainWindow.cpp: /home/asi/Programmes/Qt/5.6/android_armv7/include/QtWidgets/
 		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtSensors/qambientlightsensor.h \
 		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QTime \
 		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qdatetime.h \
+		serversc.h \
+		bluetoothserver.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QDebug \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/QBluetoothAddress \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetoothaddress.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetoothglobal.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QString \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/QBluetoothServer \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetoothserver.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetooth.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/QBluetoothSocket \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetoothsocket.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetoothuuid.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QtGlobal \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QUuid \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/quuid.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetoothserviceinfo.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/QBluetoothUuid \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QList \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QSharedPointer \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtNetwork/qabstractsocket.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/QBluetoothServiceInfo \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/QBluetoothLocalDevice \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetoothlocaldevice.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/QBluetoothHostInfo \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetoothhostinfo.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/QBluetoothDeviceDiscoveryAgent \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetoothdevicediscoveryagent.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/QBluetoothDeviceInfo \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetoothdeviceinfo.h \
 		MainWindow.h
 	/home/asi/Programmes/Qt/5.6/android_armv7/bin/moc $(DEFINES) -I/home/asi/Programmes/Qt/5.6/android_armv7/mkspecs/android-g++ -I/home/asi/Documents/ASI4/PAO/semestre2/smartcontrol/smartphone/hostBluetooth -I/home/asi/Programmes/Qt/5.6/android_armv7/include -I/home/asi/Programmes/Qt/5.6/android_armv7/include/QtWidgets -I/home/asi/Programmes/Qt/5.6/android_armv7/include/QtGui -I/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth -I/home/asi/Programmes/Qt/5.6/android_armv7/include/QtSensors -I/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore -I/home/asi/Developpement/API/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.9/include -I/home/asi/Developpement/API/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.9/libs/armeabi-v7a/include -I/home/asi/Developpement/API/android-ndk-r10e/platforms/android-9/arch-arm//usr/include MainWindow.h -o moc_MainWindow.cpp
+
+moc_serversc.cpp: /home/asi/Programmes/Qt/5.6/android_armv7/include/QtSensors/QSensor \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtSensors/qsensor.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtSensors/qsensorsglobal.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qglobal.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qconfig.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qfeatures.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qsystemdetection.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qprocessordetection.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qcompilerdetection.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qtypeinfo.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qtypetraits.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qisenum.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qsysinfo.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qlogging.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qflags.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qatomic.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qbasicatomic.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qatomic_bootstrap.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qgenericatomic.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qatomic_cxx11.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qatomic_gcc.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qatomic_msvc.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qatomic_armv7.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qatomic_armv6.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qatomic_armv5.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qatomic_ia64.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qatomic_x86.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qatomic_unix.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qglobalstatic.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qmutex.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qnumeric.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qversiontagging.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QObject \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qobject.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qobjectdefs.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qnamespace.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qobjectdefs_impl.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qstring.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qchar.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qbytearray.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qrefcount.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qarraydata.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qstringbuilder.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qlist.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qalgorithms.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qiterator.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qhashfunctions.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qpair.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qbytearraylist.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qstringlist.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qregexp.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qstringmatcher.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qcoreevent.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qscopedpointer.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qmetatype.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qvarlengtharray.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qcontainerfwd.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qobject_impl.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QByteArray \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QMetaType \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QVariant \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qvariant.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qmap.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qdebug.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qhash.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qtextstream.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qiodevice.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qlocale.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qshareddata.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qvector.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qpoint.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qset.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qcontiguouscache.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QPair \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtSensors/QRotationSensor \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtSensors/qrotationsensor.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtSensors/QGyroscope \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtSensors/qgyroscope.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtSensors/QAccelerometer \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtSensors/qaccelerometer.h \
+		bluetoothserver.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QDebug \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/QBluetoothAddress \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetoothaddress.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetoothglobal.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QString \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/QBluetoothServer \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetoothserver.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetooth.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/QBluetoothSocket \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetoothsocket.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetoothuuid.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QtGlobal \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QUuid \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/quuid.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetoothserviceinfo.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/QBluetoothUuid \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QList \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QSharedPointer \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qsharedpointer.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qsharedpointer_impl.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtNetwork/qabstractsocket.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/QBluetoothServiceInfo \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/QBluetoothLocalDevice \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetoothlocaldevice.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/QBluetoothHostInfo \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetoothhostinfo.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/QBluetoothDeviceDiscoveryAgent \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetoothdevicediscoveryagent.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/QBluetoothDeviceInfo \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetoothdeviceinfo.h \
+		serversc.h
+	/home/asi/Programmes/Qt/5.6/android_armv7/bin/moc $(DEFINES) -I/home/asi/Programmes/Qt/5.6/android_armv7/mkspecs/android-g++ -I/home/asi/Documents/ASI4/PAO/semestre2/smartcontrol/smartphone/hostBluetooth -I/home/asi/Programmes/Qt/5.6/android_armv7/include -I/home/asi/Programmes/Qt/5.6/android_armv7/include/QtWidgets -I/home/asi/Programmes/Qt/5.6/android_armv7/include/QtGui -I/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth -I/home/asi/Programmes/Qt/5.6/android_armv7/include/QtSensors -I/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore -I/home/asi/Developpement/API/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.9/include -I/home/asi/Developpement/API/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.9/libs/armeabi-v7a/include -I/home/asi/Developpement/API/android-ndk-r10e/platforms/android-9/arch-arm//usr/include serversc.h -o moc_serversc.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
@@ -876,42 +997,13 @@ main.o: main.cpp MainWindow.h \
 		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtGui/qtouchdevice.h \
 		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtWidgets/qtabwidget.h \
 		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtGui/qicon.h \
-		bluetoothserver.h \
-		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QDebug \
-		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/QBluetoothAddress \
-		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetoothaddress.h \
-		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetoothglobal.h \
-		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QByteArray \
-		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QString \
-		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QMetaType \
-		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/QBluetoothServer \
-		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetoothserver.h \
-		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QObject \
-		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetooth.h \
-		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/QBluetoothSocket \
-		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetoothsocket.h \
-		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetoothuuid.h \
-		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QtGlobal \
-		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QUuid \
-		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/quuid.h \
-		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetoothserviceinfo.h \
-		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/QBluetoothUuid \
-		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QList \
-		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QSharedPointer \
-		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QVariant \
-		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtNetwork/qabstractsocket.h \
-		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/QBluetoothServiceInfo \
-		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/QBluetoothLocalDevice \
-		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetoothlocaldevice.h \
-		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/QBluetoothHostInfo \
-		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetoothhostinfo.h \
-		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/QBluetoothDeviceDiscoveryAgent \
-		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetoothdevicediscoveryagent.h \
-		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/QBluetoothDeviceInfo \
-		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetoothdeviceinfo.h \
 		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtSensors/QSensor \
 		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtSensors/qsensor.h \
 		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtSensors/qsensorsglobal.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QObject \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QByteArray \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QMetaType \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QVariant \
 		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QPair \
 		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtSensors/QRotationSensor \
 		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtSensors/qrotationsensor.h \
@@ -923,6 +1015,36 @@ main.o: main.cpp MainWindow.h \
 		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtSensors/qambientlightsensor.h \
 		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QTime \
 		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qdatetime.h \
+		serversc.h \
+		bluetoothserver.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QDebug \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/QBluetoothAddress \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetoothaddress.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetoothglobal.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QString \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/QBluetoothServer \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetoothserver.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetooth.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/QBluetoothSocket \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetoothsocket.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetoothuuid.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QtGlobal \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QUuid \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/quuid.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetoothserviceinfo.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/QBluetoothUuid \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QList \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QSharedPointer \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtNetwork/qabstractsocket.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/QBluetoothServiceInfo \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/QBluetoothLocalDevice \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetoothlocaldevice.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/QBluetoothHostInfo \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetoothhostinfo.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/QBluetoothDeviceDiscoveryAgent \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetoothdevicediscoveryagent.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/QBluetoothDeviceInfo \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetoothdeviceinfo.h \
 		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtWidgets/QApplication \
 		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtWidgets/qapplication.h \
 		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qcoreapplication.h \
@@ -1035,14 +1157,287 @@ bluetoothserver.o: bluetoothserver.cpp bluetoothserver.h \
 		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetoothdeviceinfo.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o bluetoothserver.o bluetoothserver.cpp
 
-MainWindow.o: MainWindow.cpp ui_mainwindow.h
+MainWindow.o: MainWindow.cpp MainWindow.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtWidgets/QMainWindow \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtWidgets/qmainwindow.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtWidgets/qwidget.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtGui/qwindowdefs.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qglobal.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qconfig.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qfeatures.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qsystemdetection.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qprocessordetection.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qcompilerdetection.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qtypeinfo.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qtypetraits.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qisenum.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qsysinfo.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qlogging.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qflags.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qatomic.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qbasicatomic.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qatomic_bootstrap.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qgenericatomic.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qatomic_cxx11.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qatomic_gcc.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qatomic_msvc.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qatomic_armv7.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qatomic_armv6.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qatomic_armv5.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qatomic_ia64.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qatomic_x86.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qatomic_unix.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qglobalstatic.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qmutex.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qnumeric.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qversiontagging.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qobjectdefs.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qnamespace.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qobjectdefs_impl.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtGui/qwindowdefs_win.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qobject.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qstring.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qchar.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qbytearray.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qrefcount.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qarraydata.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qstringbuilder.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qlist.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qalgorithms.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qiterator.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qhashfunctions.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qpair.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qbytearraylist.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qstringlist.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qregexp.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qstringmatcher.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qcoreevent.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qscopedpointer.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qmetatype.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qvarlengtharray.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qcontainerfwd.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qobject_impl.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qmargins.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtGui/qpaintdevice.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qrect.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qsize.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qpoint.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtGui/qpalette.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtGui/qcolor.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtGui/qrgb.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtGui/qrgba64.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtGui/qbrush.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qvector.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtGui/qmatrix.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtGui/qpolygon.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtGui/qregion.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qdatastream.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qiodevice.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qline.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtGui/qtransform.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtGui/qpainterpath.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtGui/qimage.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtGui/qpixelformat.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtGui/qpixmap.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qsharedpointer.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qshareddata.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qhash.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qsharedpointer_impl.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtGui/qfont.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtGui/qfontmetrics.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtGui/qfontinfo.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtWidgets/qsizepolicy.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtGui/qcursor.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtGui/qkeysequence.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtGui/qevent.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qvariant.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qmap.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qdebug.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qtextstream.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qlocale.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qset.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qcontiguouscache.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qurl.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qurlquery.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qfile.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qfiledevice.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtGui/qvector2d.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtGui/qtouchdevice.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtWidgets/qtabwidget.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtGui/qicon.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtSensors/QSensor \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtSensors/qsensor.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtSensors/qsensorsglobal.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QObject \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QByteArray \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QMetaType \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QVariant \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QPair \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtSensors/QRotationSensor \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtSensors/qrotationsensor.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtSensors/QGyroscope \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtSensors/qgyroscope.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtSensors/QAccelerometer \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtSensors/qaccelerometer.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtSensors/QAmbientLightSensor \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtSensors/qambientlightsensor.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QTime \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qdatetime.h \
+		serversc.h \
+		bluetoothserver.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QDebug \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/QBluetoothAddress \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetoothaddress.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetoothglobal.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QString \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/QBluetoothServer \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetoothserver.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetooth.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/QBluetoothSocket \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetoothsocket.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetoothuuid.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QtGlobal \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QUuid \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/quuid.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetoothserviceinfo.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/QBluetoothUuid \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QList \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QSharedPointer \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtNetwork/qabstractsocket.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/QBluetoothServiceInfo \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/QBluetoothLocalDevice \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetoothlocaldevice.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/QBluetoothHostInfo \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetoothhostinfo.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/QBluetoothDeviceDiscoveryAgent \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetoothdevicediscoveryagent.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/QBluetoothDeviceInfo \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetoothdeviceinfo.h \
+		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o MainWindow.o MainWindow.cpp
+
+serversc.o: serversc.cpp serversc.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtSensors/QSensor \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtSensors/qsensor.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtSensors/qsensorsglobal.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qglobal.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qconfig.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qfeatures.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qsystemdetection.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qprocessordetection.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qcompilerdetection.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qtypeinfo.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qtypetraits.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qisenum.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qsysinfo.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qlogging.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qflags.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qatomic.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qbasicatomic.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qatomic_bootstrap.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qgenericatomic.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qatomic_cxx11.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qatomic_gcc.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qatomic_msvc.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qatomic_armv7.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qatomic_armv6.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qatomic_armv5.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qatomic_ia64.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qatomic_x86.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qatomic_unix.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qglobalstatic.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qmutex.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qnumeric.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qversiontagging.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QObject \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qobject.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qobjectdefs.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qnamespace.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qobjectdefs_impl.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qstring.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qchar.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qbytearray.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qrefcount.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qarraydata.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qstringbuilder.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qlist.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qalgorithms.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qiterator.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qhashfunctions.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qpair.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qbytearraylist.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qstringlist.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qregexp.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qstringmatcher.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qcoreevent.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qscopedpointer.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qmetatype.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qvarlengtharray.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qcontainerfwd.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qobject_impl.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QByteArray \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QMetaType \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QVariant \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qvariant.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qmap.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qdebug.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qhash.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qtextstream.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qiodevice.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qlocale.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qshareddata.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qvector.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qpoint.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qset.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qcontiguouscache.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QPair \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtSensors/QRotationSensor \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtSensors/qrotationsensor.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtSensors/QGyroscope \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtSensors/qgyroscope.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtSensors/QAccelerometer \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtSensors/qaccelerometer.h \
+		bluetoothserver.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QDebug \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/QBluetoothAddress \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetoothaddress.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetoothglobal.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QString \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/QBluetoothServer \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetoothserver.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetooth.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/QBluetoothSocket \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetoothsocket.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetoothuuid.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QtGlobal \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QUuid \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/quuid.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetoothserviceinfo.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/QBluetoothUuid \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QList \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/QSharedPointer \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qsharedpointer.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtCore/qsharedpointer_impl.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtNetwork/qabstractsocket.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/QBluetoothServiceInfo \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/QBluetoothLocalDevice \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetoothlocaldevice.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/QBluetoothHostInfo \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetoothhostinfo.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/QBluetoothDeviceDiscoveryAgent \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetoothdevicediscoveryagent.h \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/QBluetoothDeviceInfo \
+		/home/asi/Programmes/Qt/5.6/android_armv7/include/QtBluetooth/qbluetoothdeviceinfo.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o serversc.o serversc.cpp
 
 moc_bluetoothserver.o: moc_bluetoothserver.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_bluetoothserver.o moc_bluetoothserver.cpp
 
 moc_MainWindow.o: moc_MainWindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_MainWindow.o moc_MainWindow.cpp
+
+moc_serversc.o: moc_serversc.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_serversc.o moc_serversc.cpp
 
 ####### Install
 

@@ -28,12 +28,11 @@ class Ui_MainWindow
 public:
     QWidget *centralWidget;
     QVBoxLayout *verticalLayout;
-    QPushButton *pushButton_start;
-    QLabel *infoDeviceLabel;
-    QLabel *label_status;
-    QListWidget *listWidget_devices;
-    QPushButton *pushButton_ok;
-    QPushButton *pushButton_ok_2;
+    QPushButton *pB_Start;
+    QLabel *l_InfoDevice;
+    QLabel *l_Status;
+    QListWidget *lW_devices;
+    QPushButton *pB_Stop;
     QListWidget *debug_list;
 
     void setupUi(QMainWindow *MainWindow)
@@ -47,45 +46,40 @@ public:
         verticalLayout->setSpacing(6);
         verticalLayout->setContentsMargins(11, 11, 11, 11);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        pushButton_start = new QPushButton(centralWidget);
-        pushButton_start->setObjectName(QStringLiteral("pushButton_start"));
+        pB_Start = new QPushButton(centralWidget);
+        pB_Start->setObjectName(QStringLiteral("pB_Start"));
 
-        verticalLayout->addWidget(pushButton_start);
+        verticalLayout->addWidget(pB_Start);
 
-        infoDeviceLabel = new QLabel(centralWidget);
-        infoDeviceLabel->setObjectName(QStringLiteral("infoDeviceLabel"));
+        l_InfoDevice = new QLabel(centralWidget);
+        l_InfoDevice->setObjectName(QStringLiteral("l_InfoDevice"));
         QFont font;
         font.setPointSize(14);
         font.setBold(true);
         font.setWeight(75);
-        infoDeviceLabel->setFont(font);
+        l_InfoDevice->setFont(font);
 
-        verticalLayout->addWidget(infoDeviceLabel);
+        verticalLayout->addWidget(l_InfoDevice);
 
-        label_status = new QLabel(centralWidget);
-        label_status->setObjectName(QStringLiteral("label_status"));
+        l_Status = new QLabel(centralWidget);
+        l_Status->setObjectName(QStringLiteral("l_Status"));
         QFont font1;
         font1.setPointSize(18);
         font1.setBold(true);
         font1.setWeight(75);
-        label_status->setFont(font1);
+        l_Status->setFont(font1);
 
-        verticalLayout->addWidget(label_status);
+        verticalLayout->addWidget(l_Status);
 
-        listWidget_devices = new QListWidget(centralWidget);
-        listWidget_devices->setObjectName(QStringLiteral("listWidget_devices"));
+        lW_devices = new QListWidget(centralWidget);
+        lW_devices->setObjectName(QStringLiteral("lW_devices"));
 
-        verticalLayout->addWidget(listWidget_devices);
+        verticalLayout->addWidget(lW_devices);
 
-        pushButton_ok = new QPushButton(centralWidget);
-        pushButton_ok->setObjectName(QStringLiteral("pushButton_ok"));
+        pB_Stop = new QPushButton(centralWidget);
+        pB_Stop->setObjectName(QStringLiteral("pB_Stop"));
 
-        verticalLayout->addWidget(pushButton_ok);
-
-        pushButton_ok_2 = new QPushButton(centralWidget);
-        pushButton_ok_2->setObjectName(QStringLiteral("pushButton_ok_2"));
-
-        verticalLayout->addWidget(pushButton_ok_2);
+        verticalLayout->addWidget(pB_Stop);
 
         debug_list = new QListWidget(centralWidget);
         debug_list->setObjectName(QStringLiteral("debug_list"));
@@ -102,11 +96,10 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", 0));
-        pushButton_start->setText(QApplication::translate("MainWindow", "Start", 0));
-        infoDeviceLabel->setText(QApplication::translate("MainWindow", "Nom :  xxxxxxxxxxx", 0));
-        label_status->setText(QApplication::translate("MainWindow", "Standby ...", 0));
-        pushButton_ok->setText(QApplication::translate("MainWindow", "Ready", 0));
-        pushButton_ok_2->setText(QApplication::translate("MainWindow", "STOP", 0));
+        pB_Start->setText(QApplication::translate("MainWindow", "Start", 0));
+        l_InfoDevice->setText(QApplication::translate("MainWindow", "Nom :  xxxxxxxxxxx", 0));
+        l_Status->setText(QApplication::translate("MainWindow", "Standby ...", 0));
+        pB_Stop->setText(QApplication::translate("MainWindow", "STOP", 0));
     } // retranslateUi
 
 };

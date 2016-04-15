@@ -6,7 +6,7 @@
 
 static const QLatin1String serviceUuid("e8e10f95-1a70-4b27-9ccf-02010264e9c8");
 
-bluetoothServer::bluetoothServer() {
+BluetoothServer::BluetoothServer() {
 
     // Check if Bluetooth is available on this device
     if (localDevice.isValid()) {
@@ -22,11 +22,11 @@ bluetoothServer::bluetoothServer() {
     }
 }
 
-bluetoothServer::~bluetoothServer() {
+BluetoothServer::~BluetoothServer() {
     stopServer();
 }
 
-void bluetoothServer::startServer(const QBluetoothAddress &localAdapter) {
+void BluetoothServer::startServer(const QBluetoothAddress &localAdapter) {
     rfcommServer = new QBluetoothServer(QBluetoothServiceInfo::RfcommProtocol, this);
     connect(rfcommServer, SIGNAL(newConnection()), this, SLOT(clientConnected()));
     connect(rfcommServer, SIGNAL(error(QBluetoothServer::Error)), this, SLOT(trash(QBluetoothServer::Error)));
@@ -94,7 +94,7 @@ void bluetoothServer::startServer(const QBluetoothAddress &localAdapter) {
         emit error("Critique");
 }
 
-void bluetoothServer::stopServer(){
+void BluetoothServer::stopServer(){
   //  debug("Arrêt du serveur");
     // Unregister service
     serviceInfo.unregisterService();
@@ -107,7 +107,7 @@ void bluetoothServer::stopServer(){
     socket = NULL;
 }
 
-void bluetoothServer::clientConnected() {
+void BluetoothServer::clientConnected() {
     qDebug("Client connecté");
     socket = rfcommServer->nextPendingConnection();
     if (!socket)
@@ -118,18 +118,18 @@ void bluetoothServer::clientConnected() {
     emit signalClientConnected();
 }
 
-void bluetoothServer::sendMessage(const QString &message) {
+void BluetoothServer::sendMessage(const QString &message) {
     QByteArray text = message.toUtf8() + '\n';
     socket->write(text);
 }
 
-void bluetoothServer::clientDisconnected() {
+void BluetoothServer::clientDisconnected() {
     emit clientDisconnected(socket->peerName());
 
     socket->deleteLater();
 }
 
-void bluetoothServer::readSocket() {
+void BluetoothServer::readSocket() {
    // QBluetoothSocket *socket = qobject_cast<QBluetoothSocket *>(sender());
     if (!socket)
         return;
@@ -139,8 +139,4 @@ void bluetoothServer::readSocket() {
         emit messageReceived(socket->peerName(),
                              QString::fromUtf8(line.constData(), line.length()));
     }
-}
-
-void bluetoothServer::trash(QBluetoothServer::Error) {
-    sendMessage("AAaaaaahhhhhhhh");
 }

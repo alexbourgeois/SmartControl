@@ -16,14 +16,14 @@
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <widget class="QPushButton" name="pushButton_start">
+     <widget class="QPushButton" name="pB_Start">
       <property name="text">
        <string>Start</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QLabel" name="infoDeviceLabel">
+     <widget class="QLabel" name="l_InfoDevice">
       <property name="font">
        <font>
         <pointsize>14</pointsize>
@@ -37,7 +37,7 @@
      </widget>
     </item>
     <item>
-     <widget class="QLabel" name="label_status">
+     <widget class="QLabel" name="l_Status">
       <property name="font">
        <font>
         <pointsize>18</pointsize>
@@ -51,17 +51,10 @@
      </widget>
     </item>
     <item>
-     <widget class="QListWidget" name="listWidget_devices"/>
+     <widget class="QListWidget" name="lW_devices"/>
     </item>
     <item>
-     <widget class="QPushButton" name="pushButton_ok">
-      <property name="text">
-       <string>Ready</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QPushButton" name="pushButton_ok_2">
+     <widget class="QPushButton" name="pB_Stop">
       <property name="text">
        <string>STOP</string>
       </property>

@@ -15,7 +15,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(client, SIGNAL(connectionEstablished(int)), this, SLOT(connectionState(int)));
     connect(client, SIGNAL(valuesAcquired(int, float, float, float)), this, SLOT(readValues(int, float, float, float)));
 
-    sensorChosen=0;
+    sensorChosen=1;
 }
 
 MainWindow::~MainWindow() {
