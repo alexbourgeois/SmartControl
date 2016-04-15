@@ -103,16 +103,19 @@
       <item>
        <layout class="QVBoxLayout" name="verticalLayout">
         <item>
-         <widget class="QRadioButton" name="rB_Gyroscope">
+         <widget class="QRadioButton" name="rB_Rotation">
           <property name="text">
-           <string>Gyroscope</string>
+           <string>Rotation</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QRadioButton" name="rB_Rotation">
+         <widget class="QRadioButton" name="rB_Gyroscope">
           <property name="text">
-           <string>Rotation</string>
+           <string>Gyroscope</string>
           </property>
          </widget>
         </item>

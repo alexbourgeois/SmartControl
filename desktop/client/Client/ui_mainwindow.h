@@ -18,6 +18,7 @@
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
+#include <QtWidgets/QListWidget>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QRadioButton>
@@ -31,14 +32,8 @@ class Ui_MainWindow
 {
 public:
     QWidget *centralWidget;
-    QVBoxLayout *verticalLayout_5;
-    QVBoxLayout *verticalLayout_4;
-    QVBoxLayout *verticalLayout_3;
-    QHBoxLayout *horizontalLayout_2;
-    QPushButton *pB_Connect;
-    QSpacerItem *horizontalSpacer_2;
-    QPushButton *pB_Stop;
     QLabel *label_state;
+    QListWidget *listWidget;
     QGroupBox *gB_sensor;
     QWidget *horizontalLayoutWidget;
     QHBoxLayout *horizontalLayout;
@@ -51,54 +46,32 @@ public:
     QRadioButton *rB_Gyroscope;
     QRadioButton *rB_Rotation;
     QRadioButton *rB_Accelerometer;
+    QWidget *horizontalLayoutWidget_2;
+    QHBoxLayout *horizontalLayout_2;
+    QPushButton *pB_Connect;
+    QSpacerItem *horizontalSpacer_2;
+    QPushButton *pB_Stop;
 
     void setupUi(QMainWindow *MainWindow)
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(376, 464);
+        MainWindow->resize(376, 275);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
-        verticalLayout_5 = new QVBoxLayout(centralWidget);
-        verticalLayout_5->setSpacing(6);
-        verticalLayout_5->setContentsMargins(11, 11, 11, 11);
-        verticalLayout_5->setObjectName(QStringLiteral("verticalLayout_5"));
-        verticalLayout_4 = new QVBoxLayout();
-        verticalLayout_4->setSpacing(6);
-        verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
-        verticalLayout_3 = new QVBoxLayout();
-        verticalLayout_3->setSpacing(6);
-        verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
-        horizontalLayout_2 = new QHBoxLayout();
-        horizontalLayout_2->setSpacing(6);
-        horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
-        pB_Connect = new QPushButton(centralWidget);
-        pB_Connect->setObjectName(QStringLiteral("pB_Connect"));
-
-        horizontalLayout_2->addWidget(pB_Connect);
-
-        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        horizontalLayout_2->addItem(horizontalSpacer_2);
-
-        pB_Stop = new QPushButton(centralWidget);
-        pB_Stop->setObjectName(QStringLiteral("pB_Stop"));
-
-        horizontalLayout_2->addWidget(pB_Stop);
-
-
-        verticalLayout_3->addLayout(horizontalLayout_2);
-
         label_state = new QLabel(centralWidget);
         label_state->setObjectName(QStringLiteral("label_state"));
-
-        verticalLayout_3->addWidget(label_state);
-
+        label_state->setGeometry(QRect(9, 44, 211, 17));
+        listWidget = new QListWidget(centralWidget);
+        listWidget->setObjectName(QStringLiteral("listWidget"));
+        listWidget->setGeometry(QRect(9, 67, 351, 41));
+        listWidget->setResizeMode(QListView::Adjust);
         gB_sensor = new QGroupBox(centralWidget);
         gB_sensor->setObjectName(QStringLiteral("gB_sensor"));
+        gB_sensor->setGeometry(QRect(10, 120, 358, 151));
         horizontalLayoutWidget = new QWidget(gB_sensor);
         horizontalLayoutWidget->setObjectName(QStringLiteral("horizontalLayoutWidget"));
-        horizontalLayoutWidget->setGeometry(QRect(0, 20, 341, 113));
+        horizontalLayoutWidget->setGeometry(QRect(0, 20, 351, 121));
         horizontalLayout = new QHBoxLayout(horizontalLayoutWidget);
         horizontalLayout->setSpacing(6);
         horizontalLayout->setContentsMargins(11, 11, 11, 11);
@@ -150,14 +123,27 @@ public:
 
         horizontalLayout->addLayout(verticalLayout);
 
+        horizontalLayoutWidget_2 = new QWidget(centralWidget);
+        horizontalLayoutWidget_2->setObjectName(QStringLiteral("horizontalLayoutWidget_2"));
+        horizontalLayoutWidget_2->setGeometry(QRect(13, 10, 341, 29));
+        horizontalLayout_2 = new QHBoxLayout(horizontalLayoutWidget_2);
+        horizontalLayout_2->setSpacing(6);
+        horizontalLayout_2->setContentsMargins(11, 11, 11, 11);
+        horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
+        horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
+        pB_Connect = new QPushButton(horizontalLayoutWidget_2);
+        pB_Connect->setObjectName(QStringLiteral("pB_Connect"));
 
-        verticalLayout_3->addWidget(gB_sensor);
+        horizontalLayout_2->addWidget(pB_Connect);
 
+        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-        verticalLayout_4->addLayout(verticalLayout_3);
+        horizontalLayout_2->addItem(horizontalSpacer_2);
 
+        pB_Stop = new QPushButton(horizontalLayoutWidget_2);
+        pB_Stop->setObjectName(QStringLiteral("pB_Stop"));
 
-        verticalLayout_5->addLayout(verticalLayout_4);
+        horizontalLayout_2->addWidget(pB_Stop);
 
         MainWindow->setCentralWidget(centralWidget);
 
@@ -169,8 +155,6 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", 0));
-        pB_Connect->setText(QApplication::translate("MainWindow", "Connect", 0));
-        pB_Stop->setText(QApplication::translate("MainWindow", "Stop", 0));
         label_state->setText(QString());
         gB_sensor->setTitle(QApplication::translate("MainWindow", "Sensors", 0));
         label_Interval->setText(QApplication::translate("MainWindow", "Interval (ms) :", 0));
@@ -179,6 +163,8 @@ public:
         rB_Gyroscope->setText(QApplication::translate("MainWindow", "Gyroscope", 0));
         rB_Rotation->setText(QApplication::translate("MainWindow", "Rotation", 0));
         rB_Accelerometer->setText(QApplication::translate("MainWindow", "Accelerometer", 0));
+        pB_Connect->setText(QApplication::translate("MainWindow", "Connect", 0));
+        pB_Stop->setText(QApplication::translate("MainWindow", "Stop", 0));
     } // retranslateUi
 
 };
