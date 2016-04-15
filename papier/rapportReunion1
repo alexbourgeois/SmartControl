@@ -1,0 +1,17 @@
+REUNION DU 03/02/15
+
+Dans l'idée le serveur ce n'est pas le desktop mais le telephone vu que je lui demande les infos a interval régulier.
+
+Justifier le besoin de demander au serveur les infos (idée de gagner le maximum de temps et de ne rater aucune info)
+Protocole très court pour limiter les échanges (juste un nombre à envoyer pour que le serveur sache quel capteur le client demande)
+
+Bien séparer les couches car l'API doit pouvoir être utilisée en transparence (à voir quand même parce que c'est chaud)
+Le passage vers Unity va se faire au travers d'un fichier pour l'instant mais à voir car sûrement pas la meilleure solution.
+(Pourquoi pas simuler un périphérique USB au final avec Qt)
+
+Attention au fait que tous les téléphones n'ont pas tous les capteurs donc à l'initialisation prévoir que le serveur dise ce qu'il a de dispo
+
+Spécification du système et justification des choix technologiques.
+Afin de pouvoir se servir de l'API en transparence, penser à bien tout séparer
+Analyse descendante très importante pour que ce soit le plus générique possible
+Faire le diagramme de classe et diagramme d'interaction (séquence aussi)

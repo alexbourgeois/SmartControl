@@ -1,0 +1,25 @@
+@startuml
+class Client {
+    -client : BluetoothClient
+
+    +void sendMessage(String)
+    +void showMessage(String, String)
+    -void serviceDiscovered(BluetoothServiceInfo)
+    -void discoveryFinished()
+    -void disconnected()
+    -void connected(String)
+}
+
+class BluetoothClient {
+    -socket : QBluetoothSocket
+
+    +void startClient(BluetoothServiceInfo);
+    +void stopClient();
+    +void sendMessage(String);
+    +void readMessage(String,String);
+    -void connected();
+    -void connected(String);
+    -void disconnected();
+}
+
+@enduml

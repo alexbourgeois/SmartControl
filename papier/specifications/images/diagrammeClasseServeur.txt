@@ -1,0 +1,25 @@
+@startuml
+
+class  Serveur {
+    -server : ServeurBluetooth
+
+    +void initialise()
+    +void sendMessage()
+}
+
+class ServeurBluetooth {
+    -rfcommServer : ServeurRFCOMM
+    -localDevice : AdaptateurBluetooth
+    -serviceInfo : ServiceBluetooth
+    -socket : Socket
+
+    +void startServer()
+    +void stopServer()
+    +void sendMessage(String)
+    +void messageReceived(String, String);
+    -void clientConnected()
+    -void clientDisconnected()
+    -void readSocket()
+}
+
+@enduml

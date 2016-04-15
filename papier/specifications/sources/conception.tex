@@ -1,0 +1,52 @@
+\subsection{Généralités}
+
+\begin{itemize}
+\item  Le projet consistera à établir une connexion Bluetooth avec un serveur fonctionnant sur un smartphone Android depuis un client situé sur un ordinateur et ainsi il sera possible de récupérer les données de capteur du téléphone. \\
+\textbf{Pourquoi Bluetooth ?}\\
+il s'agit d'une technologie rapide et plus économe en énergie que le Wifi ce qui n'est pas négligeable sur un appareil mobile. De plus la liaison sera directe et ne sera pas encombrée comme pourrait l'être une liaison Wifi;
+
+\item Le développement du système sera fait sous Qt.\\
+\textbf{Pourquoi Qt ?}\\
+Qt est multi-plateforme (windows, linux, OSX, android) ce qui facilitera grandement le développement par l'utilisation d'un langage unique : le C++ ;\\
+
+\item La société Qt s'oriente vers la 3D avec la création d'un moteur de rendu 3D donc ce projet permettra d'en explorer quelques possibilités comme la manipulation de caméra via l'utilisation des données capteur issues du téléphone, ceci servira comme preuve de fonctionnement de l'application.\\
+\end{itemize}
+
+\subsection{Communication}
+\begin{itemize}
+\item Le smartphone est un serveur auquel vient se connecter un client qui est l'ordinateur;\\
+
+\item Le client demande au serveur les données de capteur. Les capteurs disponibles sont communiqués par le serveur lors de la connexion d'un client; \\
+
+\item Le temps de réponse devant être très court afin d'obtenir une réaction en temps réel, il y a besoin de limiter la taille des trames.\\
+Pour ne rater aucune information (au cas où le serveur émettrait en continu), le serveur attend que le client lui demande quel capteur il souhaite avant d'envoyer l'information. Cela permet d'économiser de la batterie du serveur et d'avoir une communication propre. 
+\end{itemize}
+
+\subsection{Protocole de communication}
+Il existera 3 types de requêtes :
+\begin{itemize}
+\item Établir la connexion;
+\item Demander la valeur d'un ou plusieurs capteurs;
+\item Fermer la connexion.
+\end{itemize}
+
+\subsubsection{Établissement de la connexion}
+\begin{itemize}
+\item Le client fait une requête de connexion;\\
+\item Le serveur y répond et si elle est positive, envoie la liste des capteurs dont il dispose en se souvenant de l'ordre;\\
+\item Le client enregistre la liste des capteurs dans le même ordre.\\
+\end{itemize}
+
+\subsubsection{Requête sur un capteur}
+\begin{itemize}
+\item Le client fait une requête sur des capteurs en envoyant simplement : "c1 c2 cx" en fonction des capteurs qu'il souhaite; \\
+\item Le serveur y répond en envoyant les données dans le même ordre : "31;45;-8 52;10 xx yy;zz" en fonction des capteurs.\\
+\end{itemize}
+
+\subsubsection{Fermeture de la connexion}
+\begin{itemize}
+\item Le client fait une requête de fermeture;\\
+\item Le serveur y répond et clot la connexion.\\
+
+Il est à noter qu'en l'absence de réponse du serveur à 2 requêtes du client la connexion est fermée. \\En l'absence de communication du client pendant 5 minutes, le serveur ferme la connexion.
+\end{itemize}

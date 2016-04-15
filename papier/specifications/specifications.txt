@@ -1,0 +1,25 @@
+Smartcontrol :
+
+- Application client/serveur permettant l'intéraction grâce à un téléphone sous Android par connexion Bluetooth avec un objet 3D affiché dans une application Desktop 
+
+- Developpé sous Qt
+
+Pourquoi Bluetooth ? 
+Technologie rapide et plus économe en énergie que le wifi. Pas gêné par tout le traffic wifi.
+
+Pourquoi Qt ?
+programme multi-plateforme (windows, linux, OSX, android)
+Utilisation d'un langage unique : C++
+La société Qt s'oriente vers la 3D avec la création d'un moteur de rendu 3D donc ce projet permettra d'en explorer quelques possibilités.
+
+Architecture :
+Smartphone est un serveur auquel vient se connecter un client qui est l'ordinateur.
+
+Le client demande au serveur les données de capteurs. Les capteurs disponibles sont communiqués par le serveur lors de la connexion d'un client. 
+
+Besoin d'un temps de réponse très rapide donc on limite la taille des trames.
+Application en temps réél, l'objet doit bouger en même temps que le smartphone.
+
+Pour ne rater aucune information, le serveur attend que le client lui demande quel capteur il souhaite. 
+
+Pas d'envoi continu des données car risque de rater des trames et donc économie d'enrgie pour le serveur.

@@ -1,0 +1,10 @@
+L'erreur : "undefined reference tp 'vtable for machin' signifie que le .moc ne peut
+pas se faire donc que des méthodes virtuelles ne sont pas implémentées (destructeur
+compris)
+
+/!\ ----------------------- /!\
+Si ça merde, essayer :
+	1- Nettoyer le projet
+	2- Executer qmake
+	3- Recompiler le projet
+/!\ ----------------------- /!\
