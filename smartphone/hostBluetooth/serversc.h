@@ -16,15 +16,18 @@ public:
     ServerSC();
     void StartServer();
     void StopServer();
-    void analyzeMessage(const QString &sender, const QString &message);
 
 signals:
     void connectionEstablished(int);
     void sendMessage(QString);
 
+    void s_debug(QString);
+
 private slots:
     void clientConnected();
     void clientDisconnected(QString);
+    void analyzeMessage(const QString &sender, const QString &message);
+    void errorManagement(QString);
 
 private:
     BluetoothServer *server;

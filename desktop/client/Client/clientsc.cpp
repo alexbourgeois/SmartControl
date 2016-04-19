@@ -3,13 +3,16 @@
 ClientSC::ClientSC()
 {
     services.clear();
-    serverReady=false;
+    isServerReady=false;
+    isDiscoveryRunning=false;
+    isConnected=false;
 
     timer = new QTimer();
     timer->setInterval(100);
     timer->setSingleShot(false);
     connect(timer, SIGNAL(timeout()), this, SLOT(askSensor()));
-    client=NULL;
+
+    client = NULL;
 }
 
 void ClientSC::ConnectToServer() {
@@ -18,13 +21,14 @@ void ClientSC::ConnectToServer() {
         if(services.contains("SmartControl")) {
             qDebug() << "Connection to existing service";
             CreateClient(services.take("SmartControl"));
+            emit connectionEstablished(1);
             break;
         }
     }
     if(!client) {
         services.clear();
 
-        QBluetoothServiceDiscoveryAgent *discoveryAgent = new QBluetoothServiceDiscoveryAgent(this);
+        discoveryAgent = new QBluetoothServiceDiscoveryAgent(this);
         connect(discoveryAgent, SIGNAL(serviceDiscovered(QBluetoothServiceInfo)),
                    this, SLOT(serviceDiscovered(QBluetoothServiceInfo)));
         connect(discoveryAgent, SIGNAL(finished()),
@@ -32,6 +36,7 @@ void ClientSC::ConnectToServer() {
 
         discoveryAgent->start(QBluetoothServiceDiscoveryAgent::FullDiscovery);
         qDebug() << "Demarrage de la recherche ...";
+        isDiscoveryRunning=true;
     }
 }
 
@@ -49,7 +54,7 @@ void ClientSC::serviceDiscovered(const QBluetoothServiceInfo service) {
 void ClientSC::discoveryFinished() {
     if(!client)
         emit connectionEstablished(-1);
-
+    isDiscoveryRunning=false;
     qDebug() << "Discovery finished";
 }
 
@@ -63,7 +68,8 @@ void ClientSC::CreateClient(QBluetoothServiceInfo service) {
     connect(this, SIGNAL(sendMessage(QString)), client, SLOT(sendMessage(QString)));
 
     client->startClient(service);
-    emit connectionEstablished(1);
+
+    emit connectionEstablished(0);
 }
 
 /*
@@ -74,43 +80,39 @@ void ClientSC::CreateClient(QBluetoothServiceInfo service) {
  * 3 : Accelerometer
  */
 void ClientSC::GetSensor(int sensor, int interval) {
-    if(serverReady) {
         emit sendMessage("stop");
         switch(sensor) {
         case 1:
             emit sendMessage("1 " + QString::number(interval));
             break;
         case 2:
-            emit sendMessage("2" + QString::number(interval));
+            emit sendMessage("2 " + QString::number(interval));
             break;
         case 3:
             emit sendMessage("3 " + QString::number(interval));
             break;
-        //default:
         }
         timer->setInterval(interval);
         timer->start();
 
-        serverReady=false;
-
-        // PAS BIEN A VIRER QUAND SERVEUR MODIFIE
 //        emit sendMessage("value");
-    }
-    else
-        qDebug("Error : server not ready");
+    //else
+      //  qDebug("Error : server not ready");
 }
 
 void ClientSC::askSensor() {
-    if(serverReady) {
+    if(isServerReady) {
         emit sendMessage("value");
-        serverReady=false;
+        isServerReady=false;
     }
 }
 
 void ClientSC::analyzeMessage(const QString &sender, const QString &msg) {
-    qDebug() << "[Serveur] " + msg;
     if(msg=="ready")
-        serverReady=true;
+        isServerReady=true;
+
+    if(msg=="stop")
+        StopClient();
 
     if(msg.contains(":")){
         QStringList list = msg.split(" ");
@@ -118,21 +120,30 @@ void ClientSC::analyzeMessage(const QString &sender, const QString &msg) {
             qDebug() << "Erreur : il manque une valeur dans celles recues";
 
         QString activeSensor = list.at(0), x = list.at(1), y = list.at(2), z = list.at(3);
+        activeSensor.remove(activeSensor.size()-1, 1); //remove :
 
         emit valuesAcquired(activeSensor.toInt(), x.toFloat(), y.toFloat(), z.toFloat());
 
         //PAS BIEN
         //emit valuesAcquired(1, x.toFloat(), y.toFloat(), z.toFloat());
-        serverReady=true;
+        isServerReady=true;
     }
 }
 
 void ClientSC::StopClient() {
-    client->stopClient();
+    if(isDiscoveryRunning) {
+        discoveryAgent->stop();
+    }
+    if(isConnected) {
+        emit sendMessage("stop");
+        client->stopClient();
+    }
 }
 
 void ClientSC::connected(const QString &name) {
     qDebug() << "Connected to " << name;
+    isConnected=true;
+    emit connectionEstablished(1);
 }
 
 void ClientSC::clientDisconnected(const QString &name) {
@@ -141,4 +152,7 @@ void ClientSC::clientDisconnected(const QString &name) {
 
 void ClientSC::clientDisconnected() {
     qDebug() << "Disconnected from somebody";
+    isConnected=false;
+    client->stopClient();
+
 }

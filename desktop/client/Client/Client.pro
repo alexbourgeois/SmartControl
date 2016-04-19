@@ -4,8 +4,12 @@
 #
 #-------------------------------------------------
 
-QT       += core gui bluetooth
+android {
+    warning( "No 3D on Android" )
+}
+
 QT += 3dcore 3drender 3dinput
+QT += core gui bluetooth
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 

@@ -9,6 +9,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->pB_Stop->setEnabled(false);
     serverSC = new ServerSC();
     connect(serverSC, SIGNAL(connectionEstablished(int)), this, SLOT(connectionState(int)));
+    connect(serverSC, SIGNAL(s_debug(QString)), this, SLOT(slot_debug(QString)));
 }
 
 MainWindow::~MainWindow() {
@@ -25,7 +26,7 @@ void MainWindow::on_pB_Start_clicked() {
 
 void MainWindow::connectionState(int val) {
     if(val==1)
-        debug("Server created");
+        debug("Client connected");
     else
         debug("Error creating server");
 
@@ -39,4 +40,8 @@ void MainWindow::on_pB_Stop_clicked() {
 
 void MainWindow::debug(QString msg) {
     ui->debug_list->addItem(msg);
+}
+
+void MainWindow::slot_debug(QString msg) {
+    debug(msg);
 }

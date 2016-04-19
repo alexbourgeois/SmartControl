@@ -28,7 +28,7 @@ public:
     void stopServer();
 
 signals:
-    void signalClientConnected();
+    void s_ClientConnected();
     void error(QString);
 
     void messageReceived(const QString &sender, const QString &message);

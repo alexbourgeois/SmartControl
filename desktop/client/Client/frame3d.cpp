@@ -38,7 +38,7 @@ Frame3D::Frame3D()
     cameraEntity->setObjectName(QStringLiteral("cameraEntity"));
     cameraEntity->lens()->setPerspectiveProjection(60.0f, 16.0f/9.0f, 0.1f, 1000.0f);
    // cameraEntity->setPosition(QVector3D(-5, 4, 3.5f));
-     cameraEntity->setPosition(QVector3D(0, 2, -2.0f));
+     cameraEntity->setPosition(QVector3D(0, 2, 2.0f));
     //cameraEntity->setViewCenter(QVector3D(11, 0, 5));
     cameraEntity->setViewCenter(cubeTransforms->translation());
     cameraEntity->setUpVector(QVector3D(0, 1, 0));
@@ -68,14 +68,12 @@ Frame3D::Frame3D()
 }
 
 void Frame3D::calibrate() {
-    this->blockSignals(true);
     calibratedX = cubeTransforms->rotationX();
     calibratedY = cubeTransforms->rotationY();
     calibratedZ = cubeTransforms->rotationZ();
     cubeTransforms->setRotationX(0);
     cubeTransforms->setRotationY(0);
     cubeTransforms->setRotationZ(0);
-    this->blockSignals(false);
 }
 
 void  Frame3D::rotate(float x, float y, float z){

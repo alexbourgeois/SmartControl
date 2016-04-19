@@ -18,8 +18,11 @@ public:
     void StopClient();
 
 signals:
-    void valuesAcquired(int, float, float, float);
+    /*
+     * 0 : server created ; 1 : Connected -1 : Error
+     */
     void connectionEstablished(int);
+    void valuesAcquired(int, float, float, float);
     void sendMessage(QString);
 
 public slots:
@@ -39,7 +42,8 @@ private:
 
     QMap<QString, QBluetoothServiceInfo> services;
     BluetoothClient *client;
-    bool serverReady;
+    QBluetoothServiceDiscoveryAgent *discoveryAgent;
+    bool isServerReady, isDiscoveryRunning, isConnected;
     QTimer *timer;
 };
 

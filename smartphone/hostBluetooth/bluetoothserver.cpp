@@ -88,10 +88,9 @@ void BluetoothServer::startServer(const QBluetoothAddress &localAdapter) {
     //! [Register service]
     if(serviceInfo.registerService(localAdapter))
     //! [Register service]
-
-      emit error("Serveur ok");
+        emit error("Server started");
     else
-        emit error("Critique");
+        emit error("Critical error starting server");
 }
 
 void BluetoothServer::stopServer(){
@@ -115,7 +114,7 @@ void BluetoothServer::clientConnected() {
 
     connect(socket, SIGNAL(readyRead()), this, SLOT(readSocket()));
     connect(socket, SIGNAL(disconnected()), this, SLOT(clientDisconnected()));
-    emit signalClientConnected();
+    emit s_ClientConnected();
 }
 
 void BluetoothServer::sendMessage(const QString &message) {
@@ -130,7 +129,7 @@ void BluetoothServer::clientDisconnected() {
 }
 
 void BluetoothServer::readSocket() {
-   // QBluetoothSocket *socket = qobject_cast<QBluetoothSocket *>(sender());
+    //QBluetoothSocket *socket = qobject_cast<QBluetoothSocket *>(sender());
     if (!socket)
         return;
 

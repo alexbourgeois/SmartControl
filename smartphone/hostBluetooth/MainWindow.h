@@ -29,6 +29,7 @@ private slots:
     void on_pB_Start_clicked();
     void on_pB_Stop_clicked();
 
+    void slot_debug(QString);
 signals:
     void sendMessage(const QString &message);
 

@@ -7,15 +7,13 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->gB_sensor->setEnabled(false);
-
-    frame3D = new Frame3D();
-    connect(this, SIGNAL(rotate(float,float,float)), frame3D, SLOT(rotate(float,float,float)));
+    ui->pB_Stop->setEnabled(false);
 
     client = new ClientSC();
     connect(client, SIGNAL(connectionEstablished(int)), this, SLOT(connectionState(int)));
     connect(client, SIGNAL(valuesAcquired(int, float, float, float)), this, SLOT(readValues(int, float, float, float)));
 
-    sensorChosen=1;
+    sensorChosen=0;
 }
 
 MainWindow::~MainWindow() {
@@ -26,6 +24,7 @@ MainWindow::~MainWindow() {
 
 void MainWindow::on_pB_Connect_clicked() {
     ui->pB_Connect->setEnabled(false);
+    ui->pB_Stop->setEnabled(true);
     ui->listWidget->clear();
     ui->label_state->setText("Scanning ...");
 
@@ -37,16 +36,18 @@ void MainWindow::readValues(int sensor, float x, float y, float z) {
     case 1:
         emit rotate(x, y,z);
         break;
-    case 2:
-        break;
-    case 3:
-        break;
+    default:
+        ui->l_xValue->setText(QString::number(x));
+        ui->l_yValue->setText(QString::number(y));
+        ui->l_zValue->setText(QString::number(z));
     }
 }
 
-void MainWindow::on_pB_Stop_clicked()
-{
+void MainWindow::on_pB_Stop_clicked() {
      client->StopClient();
+     ui->pB_Connect->setEnabled(true);
+     ui->gB_sensor->setEnabled(false);
+     qDebug() << "Stop";
 }
 
 void MainWindow::on_pB_Ask_clicked() {
@@ -62,19 +63,27 @@ void MainWindow::on_pB_Ask_clicked() {
 //}
 
 void MainWindow::connectionState(int val) {
-    if(val) {
+    switch(val) {
+    case 0:
+        qDebug() << "Server created";
+        break;
+    case 1:
         ui->gB_sensor->setEnabled(true);
         ui->label_state->setText("Connected");
-    }
-    else {
+        break;
+    case -1:
         //debug("Connection error");
         ui->label_state->setText("Error");
+        break;
     }
 }
 
 void MainWindow::on_rB_Rotation_toggled(bool checked) {
-    if(checked)
+    if(checked) {
         sensorChosen=1;
+        frame3D = new Frame3D();
+        connect(this, SIGNAL(rotate(float,float,float)), frame3D, SLOT(rotate(float,float,float)));
+    }
 }
 
 void MainWindow::on_rB_Gyroscope_toggled(bool checked) {

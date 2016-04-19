@@ -20,7 +20,7 @@
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_BluetoothServer_t {
     QByteArrayData data[12];
-    char stringdata0[139];
+    char stringdata0[135];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -30,21 +30,21 @@ struct qt_meta_stringdata_BluetoothServer_t {
 static const qt_meta_stringdata_BluetoothServer_t qt_meta_stringdata_BluetoothServer = {
     {
 QT_MOC_LITERAL(0, 0, 15), // "BluetoothServer"
-QT_MOC_LITERAL(1, 16, 21), // "signalClientConnected"
-QT_MOC_LITERAL(2, 38, 0), // ""
-QT_MOC_LITERAL(3, 39, 5), // "error"
-QT_MOC_LITERAL(4, 45, 15), // "messageReceived"
-QT_MOC_LITERAL(5, 61, 6), // "sender"
-QT_MOC_LITERAL(6, 68, 7), // "message"
-QT_MOC_LITERAL(7, 76, 15), // "clientConnected"
-QT_MOC_LITERAL(8, 92, 4), // "name"
-QT_MOC_LITERAL(9, 97, 18), // "clientDisconnected"
-QT_MOC_LITERAL(10, 116, 11), // "sendMessage"
-QT_MOC_LITERAL(11, 128, 10) // "readSocket"
+QT_MOC_LITERAL(1, 16, 17), // "s_ClientConnected"
+QT_MOC_LITERAL(2, 34, 0), // ""
+QT_MOC_LITERAL(3, 35, 5), // "error"
+QT_MOC_LITERAL(4, 41, 15), // "messageReceived"
+QT_MOC_LITERAL(5, 57, 6), // "sender"
+QT_MOC_LITERAL(6, 64, 7), // "message"
+QT_MOC_LITERAL(7, 72, 15), // "clientConnected"
+QT_MOC_LITERAL(8, 88, 4), // "name"
+QT_MOC_LITERAL(9, 93, 18), // "clientDisconnected"
+QT_MOC_LITERAL(10, 112, 11), // "sendMessage"
+QT_MOC_LITERAL(11, 124, 10) // "readSocket"
 
     },
-    "BluetoothServer\0signalClientConnected\0"
-    "\0error\0messageReceived\0sender\0message\0"
+    "BluetoothServer\0s_ClientConnected\0\0"
+    "error\0messageReceived\0sender\0message\0"
     "clientConnected\0name\0clientDisconnected\0"
     "sendMessage\0readSocket"
 };
@@ -98,7 +98,7 @@ void BluetoothServer::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int 
         BluetoothServer *_t = static_cast<BluetoothServer *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->signalClientConnected(); break;
+        case 0: _t->s_ClientConnected(); break;
         case 1: _t->error((*reinterpret_cast< QString(*)>(_a[1]))); break;
         case 2: _t->messageReceived((*reinterpret_cast< const QString(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2]))); break;
         case 3: _t->clientConnected((*reinterpret_cast< const QString(*)>(_a[1]))); break;
@@ -114,7 +114,7 @@ void BluetoothServer::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int 
         void **func = reinterpret_cast<void **>(_a[1]);
         {
             typedef void (BluetoothServer::*_t)();
-            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&BluetoothServer::signalClientConnected)) {
+            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&BluetoothServer::s_ClientConnected)) {
                 *result = 0;
                 return;
             }
@@ -187,7 +187,7 @@ int BluetoothServer::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void BluetoothServer::signalClientConnected()
+void BluetoothServer::s_ClientConnected()
 {
     QMetaObject::activate(this, &staticMetaObject, 0, Q_NULLPTR);
 }

@@ -40,6 +40,7 @@ void BluetoothClient::readSocket() {
         QByteArray line = socket->readLine().trimmed();
         emit messageReceived(socket->peerName(),
                              QString::fromUtf8(line.constData(), line.length()));
+        qDebug() << "[Server] " << QString::fromUtf8(line.constData(), line.length());
     }
 //    switch(socket->state()) {
 //        case QBluetoothSocket::UnconnectedState	:

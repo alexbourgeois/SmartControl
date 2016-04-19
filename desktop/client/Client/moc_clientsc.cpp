@@ -30,9 +30,9 @@ struct qt_meta_stringdata_ClientSC_t {
 static const qt_meta_stringdata_ClientSC_t qt_meta_stringdata_ClientSC = {
     {
 QT_MOC_LITERAL(0, 0, 8), // "ClientSC"
-QT_MOC_LITERAL(1, 9, 14), // "valuesAcquired"
-QT_MOC_LITERAL(2, 24, 0), // ""
-QT_MOC_LITERAL(3, 25, 21), // "connectionEstablished"
+QT_MOC_LITERAL(1, 9, 21), // "connectionEstablished"
+QT_MOC_LITERAL(2, 31, 0), // ""
+QT_MOC_LITERAL(3, 32, 14), // "valuesAcquired"
 QT_MOC_LITERAL(4, 47, 11), // "sendMessage"
 QT_MOC_LITERAL(5, 59, 17), // "serviceDiscovered"
 QT_MOC_LITERAL(6, 77, 21), // "QBluetoothServiceInfo"
@@ -46,8 +46,8 @@ QT_MOC_LITERAL(13, 163, 4), // "name"
 QT_MOC_LITERAL(14, 168, 18) // "clientDisconnected"
 
     },
-    "ClientSC\0valuesAcquired\0\0connectionEstablished\0"
-    "sendMessage\0serviceDiscovered\0"
+    "ClientSC\0connectionEstablished\0\0"
+    "valuesAcquired\0sendMessage\0serviceDiscovered\0"
     "QBluetoothServiceInfo\0discoveryFinished\0"
     "askSensor\0analyzeMessage\0sender\0msg\0"
     "connected\0name\0clientDisconnected"
@@ -68,8 +68,8 @@ static const uint qt_meta_data_ClientSC[] = {
        3,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    4,   64,    2, 0x06 /* Public */,
-       3,    1,   73,    2, 0x06 /* Public */,
+       1,    1,   64,    2, 0x06 /* Public */,
+       3,    4,   67,    2, 0x06 /* Public */,
        4,    1,   76,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
@@ -82,8 +82,8 @@ static const uint qt_meta_data_ClientSC[] = {
       14,    0,   95,    2, 0x08 /* Private */,
 
  // signals: parameters
-    QMetaType::Void, QMetaType::Int, QMetaType::Float, QMetaType::Float, QMetaType::Float,    2,    2,    2,    2,
     QMetaType::Void, QMetaType::Int,    2,
+    QMetaType::Void, QMetaType::Int, QMetaType::Float, QMetaType::Float, QMetaType::Float,    2,    2,    2,    2,
     QMetaType::Void, QMetaType::QString,    2,
 
  // slots: parameters
@@ -104,8 +104,8 @@ void ClientSC::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, vo
         ClientSC *_t = static_cast<ClientSC *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->valuesAcquired((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< float(*)>(_a[2])),(*reinterpret_cast< float(*)>(_a[3])),(*reinterpret_cast< float(*)>(_a[4]))); break;
-        case 1: _t->connectionEstablished((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 0: _t->connectionEstablished((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 1: _t->valuesAcquired((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< float(*)>(_a[2])),(*reinterpret_cast< float(*)>(_a[3])),(*reinterpret_cast< float(*)>(_a[4]))); break;
         case 2: _t->sendMessage((*reinterpret_cast< QString(*)>(_a[1]))); break;
         case 3: _t->serviceDiscovered((*reinterpret_cast< const QBluetoothServiceInfo(*)>(_a[1]))); break;
         case 4: _t->discoveryFinished(); break;
@@ -131,15 +131,15 @@ void ClientSC::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, vo
         int *result = reinterpret_cast<int *>(_a[0]);
         void **func = reinterpret_cast<void **>(_a[1]);
         {
-            typedef void (ClientSC::*_t)(int , float , float , float );
-            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&ClientSC::valuesAcquired)) {
+            typedef void (ClientSC::*_t)(int );
+            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&ClientSC::connectionEstablished)) {
                 *result = 0;
                 return;
             }
         }
         {
-            typedef void (ClientSC::*_t)(int );
-            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&ClientSC::connectionEstablished)) {
+            typedef void (ClientSC::*_t)(int , float , float , float );
+            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&ClientSC::valuesAcquired)) {
                 *result = 1;
                 return;
             }
@@ -191,16 +191,16 @@ int ClientSC::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void ClientSC::valuesAcquired(int _t1, float _t2, float _t3, float _t4)
+void ClientSC::connectionEstablished(int _t1)
 {
-    void *_a[] = { Q_NULLPTR, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)), const_cast<void*>(reinterpret_cast<const void*>(&_t3)), const_cast<void*>(reinterpret_cast<const void*>(&_t4)) };
+    void *_a[] = { Q_NULLPTR, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
 
 // SIGNAL 1
-void ClientSC::connectionEstablished(int _t1)
+void ClientSC::valuesAcquired(int _t1, float _t2, float _t3, float _t4)
 {
-    void *_a[] = { Q_NULLPTR, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
+    void *_a[] = { Q_NULLPTR, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)), const_cast<void*>(reinterpret_cast<const void*>(&_t3)), const_cast<void*>(reinterpret_cast<const void*>(&_t4)) };
     QMetaObject::activate(this, &staticMetaObject, 1, _a);
 }
 
