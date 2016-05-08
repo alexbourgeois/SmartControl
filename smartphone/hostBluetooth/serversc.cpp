@@ -2,8 +2,8 @@
 
 ServerSC::ServerSC() {
     sensorChosen=0;
-
     sensor=NULL;
+    sensors = new QList<int>();
 }
 
 void ServerSC::StartServer() {
@@ -23,17 +23,22 @@ void ServerSC::StartServer() {
 }
 
 void ServerSC::StopServer() {
-    emit sendMessage("stop");
     server->stopServer();
-    delete server;
+    server=NULL;
 }
 
 void ServerSC::clientConnected() {
     QList<QByteArray> list = QSensor::sensorTypes();
-    for(int i=0 ; i<list.size() ; i++){
+    if(list.contains("QRotationSensor"))
+        sensors->append(1);
+    if(list.contains("QGyroscope"))
+        sensors->append(2);
+    if(list.contains("QAccelerometer"))
+        sensors->append(3);
+    //for(int i=0 ; i<list.size() ; i++){
       //  debug(list.at(i));
-        emit sendMessage(list.at(i));
-    }
+      //  emit sendMessage(list.at(i));
+    //}
     emit connectionEstablished(1);
     emit sendMessage("ready");
 }
@@ -76,18 +81,20 @@ void ServerSC::analyzeMessage(const QString &sender, const QString &message){
             sensor = NULL;
             break;
         case 1:
-            s_debug("Coucou");
-            sensor = new QRotationSensor(this);
+            if(sensors->contains(1))
+                sensor = new QRotationSensor(this);
             break;
         case 2:
-            sensor = new QGyroscope(this);
+            if(sensors->contains(2))
+                sensor = new QGyroscope(this);
             break;
         case 3:
-            sensor = new QAccelerometer(this);
+            if(sensors->contains(3))
+                sensor = new QAccelerometer(this);
             break;
         }
         if(!sensor)
-            qDebug() << "Impossible to create sensor";
+           emit sendMessage("Impossible to create sensor");
         else {
             sensor->setSkipDuplicates(true);
             sensor->start();

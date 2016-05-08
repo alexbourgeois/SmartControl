@@ -1,0 +1,97 @@
+\hypertarget{classClientSC}{}\section{Client\+SC Class Reference}
+\label{classClientSC}\index{Client\+SC@{Client\+SC}}
+Inheritance diagram for Client\+SC\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classClientSC}
+\end{center}
+\end{figure}
+\subsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classClientSC_a88166f0660ddf616b7e26fd5856d907e}{connection\+Established} (int)
+\begin{DoxyCompactList}\small\item\em \mbox{[}Signal\mbox{]} connection state \end{DoxyCompactList}\item 
+void \hyperlink{classClientSC_ace7df795354f0ddc5ecca1193b0e11b6}{values\+Acquired} (int, float, float, float)
+\begin{DoxyCompactList}\small\item\em \mbox{[}Signal\mbox{]} new sensor values have been acquired \end{DoxyCompactList}\item 
+void \hyperlink{classClientSC_a0d3a0a5d9496dd2c013a1c9b802dedcb}{send\+Message} (Q\+String)
+\begin{DoxyCompactList}\small\item\em \mbox{[}Signal\mbox{]} send a bluetooth message \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classClientSC_a1333a55122e64b2ef82b7ac1770a66ba}{Client\+SC} ()\hypertarget{classClientSC_a1333a55122e64b2ef82b7ac1770a66ba}{}\label{classClientSC_a1333a55122e64b2ef82b7ac1770a66ba}
+
+\begin{DoxyCompactList}\small\item\em \hyperlink{classClientSC}{Client\+SC} constructor. \end{DoxyCompactList}\item 
+void \hyperlink{classClientSC_ae778a4a0aa9805536bc5fbac6d450916}{Connect\+To\+Server} ()\hypertarget{classClientSC_ae778a4a0aa9805536bc5fbac6d450916}{}\label{classClientSC_ae778a4a0aa9805536bc5fbac6d450916}
+
+\begin{DoxyCompactList}\small\item\em Method that starts a discovery and connect to the server when the good service is found. \end{DoxyCompactList}\item 
+void \hyperlink{classClientSC_a867af609c1950ada2a6ce6f808b80e81}{Get\+Sensor} (int, int)\hypertarget{classClientSC_a867af609c1950ada2a6ce6f808b80e81}{}\label{classClientSC_a867af609c1950ada2a6ce6f808b80e81}
+
+\begin{DoxyCompactList}\small\item\em Method used to tell server which sensor we want. \end{DoxyCompactList}\item 
+void \hyperlink{classClientSC_a66b5a7e9b4de881bc0f77ac973e9a5b9}{Stop\+Client} ()\hypertarget{classClientSC_a66b5a7e9b4de881bc0f77ac973e9a5b9}{}\label{classClientSC_a66b5a7e9b4de881bc0f77ac973e9a5b9}
+
+\begin{DoxyCompactList}\small\item\em Method used to stop the client. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\index{Client\+SC@{Client\+SC}!connection\+Established@{connection\+Established}}
+\index{connection\+Established@{connection\+Established}!Client\+SC@{Client\+SC}}
+\subsubsection[{\texorpdfstring{connection\+Established}{connectionEstablished}}]{\setlength{\rightskip}{0pt plus 5cm}void Client\+S\+C\+::connection\+Established (
+\begin{DoxyParamCaption}
+\item[{int}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [signal]}}\hypertarget{classClientSC_a88166f0660ddf616b7e26fd5856d907e}{}\label{classClientSC_a88166f0660ddf616b7e26fd5856d907e}
+
+
+\mbox{[}Signal\mbox{]} connection state 
+
+
+\begin{DoxyParams}{Parameters}
+{\em int} & \+: 0 = client ready ; 1 = Connected ; -\/1 \+: Error \\
+\hline
+\end{DoxyParams}
+\index{Client\+SC@{Client\+SC}!send\+Message@{send\+Message}}
+\index{send\+Message@{send\+Message}!Client\+SC@{Client\+SC}}
+\subsubsection[{\texorpdfstring{send\+Message}{sendMessage}}]{\setlength{\rightskip}{0pt plus 5cm}void Client\+S\+C\+::send\+Message (
+\begin{DoxyParamCaption}
+\item[{Q\+String}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [signal]}}\hypertarget{classClientSC_a0d3a0a5d9496dd2c013a1c9b802dedcb}{}\label{classClientSC_a0d3a0a5d9496dd2c013a1c9b802dedcb}
+
+
+\mbox{[}Signal\mbox{]} send a bluetooth message 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Q\+String} & \+: message \\
+\hline
+\end{DoxyParams}
+\index{Client\+SC@{Client\+SC}!values\+Acquired@{values\+Acquired}}
+\index{values\+Acquired@{values\+Acquired}!Client\+SC@{Client\+SC}}
+\subsubsection[{\texorpdfstring{values\+Acquired}{valuesAcquired}}]{\setlength{\rightskip}{0pt plus 5cm}void Client\+S\+C\+::values\+Acquired (
+\begin{DoxyParamCaption}
+\item[{int}]{, }
+\item[{float}]{, }
+\item[{float}]{, }
+\item[{float}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [signal]}}\hypertarget{classClientSC_ace7df795354f0ddc5ecca1193b0e11b6}{}\label{classClientSC_ace7df795354f0ddc5ecca1193b0e11b6}
+
+
+\mbox{[}Signal\mbox{]} new sensor values have been acquired 
+
+
+\begin{DoxyParams}{Parameters}
+{\em int} & \+: sensor reference \\
+\hline
+{\em float} & \+: x value \\
+\hline
+{\em float} & \+: y value \\
+\hline
+{\em float} & \+: z value \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+clientsc.\+h\end{DoxyCompactItemize}

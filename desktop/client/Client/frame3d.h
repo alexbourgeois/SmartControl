@@ -28,6 +28,9 @@
 
 #include "window.h"
 
+/**
+ * @brief The Frame3D class is used to display a 3D cube which is being controled by sensor data
+ */
 class Frame3D: public QObject
 {
     Q_OBJECT

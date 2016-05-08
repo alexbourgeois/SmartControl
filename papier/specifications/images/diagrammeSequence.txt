@@ -1,13 +1,12 @@
 @startuml
 
-actor Utilisateur1
+actor Utilisateur
 boundary IHMClient
 boundary IHMServeur
 entity ClientSC
 entity BluetoothClient
 entity BluetoothServeur
 entity ServeurSC
-actor Utilisateur2
 
 box "Client" #LightBlue
 	participant IHMClient
@@ -21,15 +20,13 @@ box "Serveur" #LightGreen
 	participant IHMServeur
 end box
 
-participant Utilisateur2
 
-
-Utilisateur2 -> IHMServeur : Appui "Start"
+Utilisateur -> IHMServeur : Appui "Start"
 IHMServeur -> ServeurSC : Demarrer Serveur
 ServeurSC -> BluetoothServeur : Demarrer serveur rfcomm
 BluetoothServeur -> BluetoothServeur : Attente connexion
 
-Utilisateur1 -> IHMClient : Appui "Connect"
+Utilisateur -> IHMClient : Appui "Connect"
 IHMClient -> ClientSC : Rechercher serveur
 ClientSC -> ClientSC : Recherche
 ClientSC -> BluetoothClient : Envoyer requete connexion
@@ -38,7 +35,7 @@ BluetoothServeur -> BluetoothClient : Acceptation connexion
 BluetoothClient -> ClientSC : Connexion effectuée
 ClientSC -> IHMClient : Connexion effectuée
 
-Utilisateur1 -> IHMClient : Selection capteur et interval demande (ms)
+Utilisateur -> IHMClient : Selection capteur et interval demande (ms)
 IHMClient -> ClientSC : Demande capteur
 ClientSC -> BluetoothClient : Envoyer requete capteur
 BluetoothClient -> BluetoothServeur 

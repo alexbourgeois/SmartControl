@@ -39,6 +39,9 @@
 
 #include <QWindow>
 
+/**
+ * @brief The Window class is just used to created a container for the Frame3D
+ */
 class Window : public QWindow
 {
     Q_OBJECT

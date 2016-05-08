@@ -1,0 +1,110 @@
+\hypertarget{classBluetoothClient}{}\section{Bluetooth\+Client Class Reference}
+\label{classBluetoothClient}\index{Bluetooth\+Client@{Bluetooth\+Client}}
+Inheritance diagram for Bluetooth\+Client\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classBluetoothClient}
+\end{center}
+\end{figure}
+\subsection*{Public Slots}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classBluetoothClient_a698d488b94e8d0e866620130cf865aad}{send\+Message} (const Q\+String \&message)
+\begin{DoxyCompactList}\small\item\em \mbox{[}Slot\mbox{]} used to send a message \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classBluetoothClient_a6cb91adb86f0a8ec6e378f721b6710a5}{message\+Received} (const Q\+String \&sender, const Q\+String \&message)
+\begin{DoxyCompactList}\small\item\em \mbox{[}Signal\mbox{]} a message has been received by sender \end{DoxyCompactList}\item 
+void \hyperlink{classBluetoothClient_ae1bc0e1cb03c8f3affb3cfb12a2aa328}{connected} (const Q\+String \&name)
+\begin{DoxyCompactList}\small\item\em The client is connected. \end{DoxyCompactList}\item 
+void \hyperlink{classBluetoothClient_a60a0cd485da3beee051c8fea6c788834}{disconnected} ()\hypertarget{classBluetoothClient_a60a0cd485da3beee051c8fea6c788834}{}\label{classBluetoothClient_a60a0cd485da3beee051c8fea6c788834}
+
+\begin{DoxyCompactList}\small\item\em The client is disconnected from server. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classBluetoothClient_a5ee534b5d9823be1e297f037c50beaf6}{Bluetooth\+Client} ()\hypertarget{classBluetoothClient_a5ee534b5d9823be1e297f037c50beaf6}{}\label{classBluetoothClient_a5ee534b5d9823be1e297f037c50beaf6}
+
+\begin{DoxyCompactList}\small\item\em \hyperlink{classBluetoothClient}{Bluetooth\+Client} constructor. \end{DoxyCompactList}\item 
+void \hyperlink{classBluetoothClient_a478158ca1a19982dcccd0da4d60c4355}{start\+Client} (const Q\+Bluetooth\+Service\+Info \&remote\+Service)
+\begin{DoxyCompactList}\small\item\em Establish connection with the service in bluetooth thanks to a socket. \end{DoxyCompactList}\item 
+void \hyperlink{classBluetoothClient_ac2686da0bdb51fab22776ad68a6d7278}{stop\+Client} ()\hypertarget{classBluetoothClient_ac2686da0bdb51fab22776ad68a6d7278}{}\label{classBluetoothClient_ac2686da0bdb51fab22776ad68a6d7278}
+
+\begin{DoxyCompactList}\small\item\em close the connection \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\index{Bluetooth\+Client@{Bluetooth\+Client}!connected@{connected}}
+\index{connected@{connected}!Bluetooth\+Client@{Bluetooth\+Client}}
+\subsubsection[{\texorpdfstring{connected}{connected}}]{\setlength{\rightskip}{0pt plus 5cm}void Bluetooth\+Client\+::connected (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [signal]}}\hypertarget{classBluetoothClient_ae1bc0e1cb03c8f3affb3cfb12a2aa328}{}\label{classBluetoothClient_ae1bc0e1cb03c8f3affb3cfb12a2aa328}
+
+
+The client is connected. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & \+: server name \\
+\hline
+\end{DoxyParams}
+\index{Bluetooth\+Client@{Bluetooth\+Client}!message\+Received@{message\+Received}}
+\index{message\+Received@{message\+Received}!Bluetooth\+Client@{Bluetooth\+Client}}
+\subsubsection[{\texorpdfstring{message\+Received}{messageReceived}}]{\setlength{\rightskip}{0pt plus 5cm}void Bluetooth\+Client\+::message\+Received (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{sender, }
+\item[{const Q\+String \&}]{message}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [signal]}}\hypertarget{classBluetoothClient_a6cb91adb86f0a8ec6e378f721b6710a5}{}\label{classBluetoothClient_a6cb91adb86f0a8ec6e378f721b6710a5}
+
+
+\mbox{[}Signal\mbox{]} a message has been received by sender 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sender} & \\
+\hline
+{\em message} & \\
+\hline
+\end{DoxyParams}
+\index{Bluetooth\+Client@{Bluetooth\+Client}!send\+Message@{send\+Message}}
+\index{send\+Message@{send\+Message}!Bluetooth\+Client@{Bluetooth\+Client}}
+\subsubsection[{\texorpdfstring{send\+Message}{sendMessage}}]{\setlength{\rightskip}{0pt plus 5cm}void Bluetooth\+Client\+::send\+Message (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{message}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}\hypertarget{classBluetoothClient_a698d488b94e8d0e866620130cf865aad}{}\label{classBluetoothClient_a698d488b94e8d0e866620130cf865aad}
+
+
+\mbox{[}Slot\mbox{]} used to send a message 
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & \\
+\hline
+\end{DoxyParams}
+\index{Bluetooth\+Client@{Bluetooth\+Client}!start\+Client@{start\+Client}}
+\index{start\+Client@{start\+Client}!Bluetooth\+Client@{Bluetooth\+Client}}
+\subsubsection[{\texorpdfstring{start\+Client(const Q\+Bluetooth\+Service\+Info \&remote\+Service)}{startClient(const QBluetoothServiceInfo &remoteService)}}]{\setlength{\rightskip}{0pt plus 5cm}void Bluetooth\+Client\+::start\+Client (
+\begin{DoxyParamCaption}
+\item[{const Q\+Bluetooth\+Service\+Info \&}]{remote\+Service}
+\end{DoxyParamCaption}
+)}\hypertarget{classBluetoothClient_a478158ca1a19982dcccd0da4d60c4355}{}\label{classBluetoothClient_a478158ca1a19982dcccd0da4d60c4355}
+
+
+Establish connection with the service in bluetooth thanks to a socket. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em remote\+Service} & \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+bluetoothclient.\+h\item 
+bluetoothclient.\+cpp\end{DoxyCompactItemize}

@@ -23,3 +23,6 @@ HEADERS  += \
     serversc.h
 
 FORMS    += mainwindow.ui
+
+DISTFILES += \
+    Diagrams.qmodel

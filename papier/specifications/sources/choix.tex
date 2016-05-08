@@ -1,0 +1,44 @@
+\subsection{Possibilités d'architecture}
+Les possibilités de fonctionnement étudiées sont les suivantes :\\
+
+\vspace{0.5cm}
+Le serveur émet en continu les valeurs des capteurs dont il dispose.\\
+\textbf{Avantages :}
+\begin{itemize}
+\item Tous les capteurs disponibles sont émis par le serveur, pas d'erreur avec une demande par le client sur un capteur spécifique ;
+\end{itemize}
+
+\textbf{Inconvénients :}
+\begin{itemize}
+\item Le serveur va envoyer beaucoup d'informations dont certaines qui ne seront pas utilisées, ceci est coûteux en énergie pour un téléphone dont l'autonomie est limitée;
+\item Le client peut manquer des informations et devoir attendre que le serveur émette à nouveau les valeurs du capteur. Ceci induirait une perte de temps et réduirait la réactivité du système.
+\end{itemize}
+
+\vspace{0.5cm}
+Le client demande au serveur d'émettre les données d'un unique capteur, puis ce dernier envoie les données en continu.
+\textbf{Avantages :}
+\begin{itemize}
+\item Le client ne perdra plus de temps à attendre que le bon capteur soit émis ;
+\end{itemize}
+
+\textbf{Inconvénients :}
+\begin{itemize}
+\item Le serveur va potentiellement envoyer des données qui ne seront pas traitées par le client car elles pourraient être émises trop rapidement. On a toujours un gaspillage d'énergie ;
+\item Le client peut demander un capteur inexistant sur l'appareil, entrainant un dysfonctionnement du programme.
+\end{itemize}
+
+\vspace{0.5cm}
+Afin de concilier le meilleur de ces solutions, le fonctionnement est le suivant :\\
+\vspace{0.5mm}
+Le serveur attend la connexion d'un client, ce-dernier spécifie le capteur dont il souhaite récupérer les données. Pour obtenir ces données, le client envoie une requête à laquelle le serveur répond.
+ 
+\textbf{Avantages :}
+\begin{itemize}
+\item La consommation d'énergie côté serveur sera gérée efficacement, aucune information ne sera envoyée si le client n'en fait pas la demande explicite ;
+\item Le client ne manquera aucune donnée.
+\end{itemize}
+
+\textbf{Inconvénients :}
+\begin{itemize}
+\item Le serveur devra envoyer un message d'erreur si une requête sur un capteur inexistant est faite.
+\end{itemize}

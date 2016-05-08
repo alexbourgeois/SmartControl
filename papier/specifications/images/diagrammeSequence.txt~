@@ -1,0 +1,56 @@
+@startuml
+
+actor Utilisateur1
+boundary IHMClient
+boundary IHMServeur
+entity ClientSC
+entity BluetoothClient
+entity BluetoothServeur
+entity ServeurSC
+
+box "Client" #LightBlue
+	participant IHMClient
+	participant ClientSC
+	participant BluetoothClient
+end box
+
+box "Serveur" #LightGreen
+	participant BluetoothServeur
+	participant ServeurSC
+	participant IHMServeur
+end box
+
+
+Utilisateur -> IHMServeur : Appui "Start"
+IHMServeur -> ServeurSC : Demarrer Serveur
+ServeurSC -> BluetoothServeur : Demarrer serveur rfcomm
+BluetoothServeur -> BluetoothServeur : Attente connexion
+
+Utilisateur -> IHMClient : Appui "Connect"
+IHMClient -> ClientSC : Rechercher serveur
+ClientSC -> ClientSC : Recherche
+ClientSC -> BluetoothClient : Envoyer requete connexion
+BluetoothClient -> BluetoothServeur : Connexion au serveur
+BluetoothServeur -> BluetoothClient : Acceptation connexion
+BluetoothClient -> ClientSC : Connexion effectuée
+ClientSC -> IHMClient : Connexion effectuée
+
+Utilisateur -> IHMClient : Selection capteur et interval demande (ms)
+IHMClient -> ClientSC : Demande capteur
+ClientSC -> BluetoothClient : Envoyer requete capteur
+BluetoothClient -> BluetoothServeur 
+BluetoothServeur -> ServeurSC : Requete recue
+ServeurSC -> ServeurSC : Analyser requete et demarrer capteur
+ServeurSC -> BluetoothServeur : Envoyer Message "ready"
+BluetoothServeur -> BluetoothClient
+BluetoothClient -> ClientSC : Serveur prêt
+ClientSC -> ClientSC : Lancer Timer en boucle
+ClientSC -> BluetoothClient : Envoyer message "value"
+BluetoothClient -> BluetoothServeur
+BluetoothServeur -> ServeurSC : Message recue
+ServeurSC -> ServeurSC : Analyser requete et envoyer données capteur
+ServeurSC -> BluetoothServeur : Envoyer données
+BluetoothServeur -> BluetoothClient
+BluetoothClient -> ClientSC : Données reçues
+ClientSC -> IHMClient : Affichage
+@enduml

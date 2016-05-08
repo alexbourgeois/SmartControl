@@ -1,0 +1,130 @@
+\hypertarget{classBluetoothServer}{}\section{Bluetooth\+Server Class Reference}
+\label{classBluetoothServer}\index{Bluetooth\+Server@{Bluetooth\+Server}}
+Inheritance diagram for Bluetooth\+Server\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classBluetoothServer}
+\end{center}
+\end{figure}
+\subsection*{Public Slots}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classBluetoothServer_ab4b42cafe04f9b2d50abfd4f0b2986e9}{send\+Message} (const Q\+String \&message)
+\begin{DoxyCompactList}\small\item\em \mbox{[}Slot\mbox{]} Used to send message through bluetooth \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classBluetoothServer_a743a58193190ac6d05845c0ff7430c8c}{s\+\_\+\+Client\+Connected} ()\hypertarget{classBluetoothServer_a743a58193190ac6d05845c0ff7430c8c}{}\label{classBluetoothServer_a743a58193190ac6d05845c0ff7430c8c}
+
+\begin{DoxyCompactList}\small\item\em Signal emitted when a client is connected. \end{DoxyCompactList}\item 
+void \hyperlink{classBluetoothServer_a2083b480c0816480d4835befe663cf1f}{error} (Q\+String)\hypertarget{classBluetoothServer_a2083b480c0816480d4835befe663cf1f}{}\label{classBluetoothServer_a2083b480c0816480d4835befe663cf1f}
+
+\begin{DoxyCompactList}\small\item\em Signal used to explain the error that ocurred. \end{DoxyCompactList}\item 
+void \hyperlink{classBluetoothServer_a4133b36b414c0ce886632a93cc29b735}{message\+Received} (const Q\+String \&sender, const Q\+String \&message)
+\begin{DoxyCompactList}\small\item\em Signal emitted when a message is received. \end{DoxyCompactList}\item 
+void \hyperlink{classBluetoothServer_a18b236c59af04e7439d77a48633350e8}{client\+Connected} (const Q\+String \&name)
+\begin{DoxyCompactList}\small\item\em Signal emitted when a clien is connected to the server. \end{DoxyCompactList}\item 
+void \hyperlink{classBluetoothServer_a17521320ad9e77537843c7d416e94bef}{client\+Disconnected} (const Q\+String \&name)
+\begin{DoxyCompactList}\small\item\em Signal emitted when a client disconnects from the server. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classBluetoothServer_adfb79825ca742f59c9aaa42940adf578}{Bluetooth\+Server} ()\hypertarget{classBluetoothServer_adfb79825ca742f59c9aaa42940adf578}{}\label{classBluetoothServer_adfb79825ca742f59c9aaa42940adf578}
+
+\begin{DoxyCompactList}\small\item\em \hyperlink{classBluetoothServer}{Bluetooth\+Server} constructor. \end{DoxyCompactList}\item 
+void \hyperlink{classBluetoothServer_a69cbc5ce011231abdbe76cf325b1bc8b}{start\+Server} (const Q\+Bluetooth\+Address \&local\+Adapter)
+\begin{DoxyCompactList}\small\item\em Creates un Smart\+Control server and makes it available. \end{DoxyCompactList}\item 
+void \hyperlink{classBluetoothServer_afb73ae9bfb7ed428edcc8d7995aee916}{stop\+Server} ()\hypertarget{classBluetoothServer_afb73ae9bfb7ed428edcc8d7995aee916}{}\label{classBluetoothServer_afb73ae9bfb7ed428edcc8d7995aee916}
+
+\begin{DoxyCompactList}\small\item\em Stops the Smart\+Control server. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\index{Bluetooth\+Server@{Bluetooth\+Server}!client\+Connected@{client\+Connected}}
+\index{client\+Connected@{client\+Connected}!Bluetooth\+Server@{Bluetooth\+Server}}
+\subsubsection[{\texorpdfstring{client\+Connected}{clientConnected}}]{\setlength{\rightskip}{0pt plus 5cm}void Bluetooth\+Server\+::client\+Connected (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [signal]}}\hypertarget{classBluetoothServer_a18b236c59af04e7439d77a48633350e8}{}\label{classBluetoothServer_a18b236c59af04e7439d77a48633350e8}
+
+
+Signal emitted when a clien is connected to the server. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & \+: client name \\
+\hline
+\end{DoxyParams}
+\index{Bluetooth\+Server@{Bluetooth\+Server}!client\+Disconnected@{client\+Disconnected}}
+\index{client\+Disconnected@{client\+Disconnected}!Bluetooth\+Server@{Bluetooth\+Server}}
+\subsubsection[{\texorpdfstring{client\+Disconnected}{clientDisconnected}}]{\setlength{\rightskip}{0pt plus 5cm}void Bluetooth\+Server\+::client\+Disconnected (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [signal]}}\hypertarget{classBluetoothServer_a17521320ad9e77537843c7d416e94bef}{}\label{classBluetoothServer_a17521320ad9e77537843c7d416e94bef}
+
+
+Signal emitted when a client disconnects from the server. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & \+: client name \\
+\hline
+\end{DoxyParams}
+\index{Bluetooth\+Server@{Bluetooth\+Server}!message\+Received@{message\+Received}}
+\index{message\+Received@{message\+Received}!Bluetooth\+Server@{Bluetooth\+Server}}
+\subsubsection[{\texorpdfstring{message\+Received}{messageReceived}}]{\setlength{\rightskip}{0pt plus 5cm}void Bluetooth\+Server\+::message\+Received (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{sender, }
+\item[{const Q\+String \&}]{message}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [signal]}}\hypertarget{classBluetoothServer_a4133b36b414c0ce886632a93cc29b735}{}\label{classBluetoothServer_a4133b36b414c0ce886632a93cc29b735}
+
+
+Signal emitted when a message is received. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sender} & \\
+\hline
+{\em message} & \\
+\hline
+\end{DoxyParams}
+\index{Bluetooth\+Server@{Bluetooth\+Server}!send\+Message@{send\+Message}}
+\index{send\+Message@{send\+Message}!Bluetooth\+Server@{Bluetooth\+Server}}
+\subsubsection[{\texorpdfstring{send\+Message}{sendMessage}}]{\setlength{\rightskip}{0pt plus 5cm}void Bluetooth\+Server\+::send\+Message (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{message}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}\hypertarget{classBluetoothServer_ab4b42cafe04f9b2d50abfd4f0b2986e9}{}\label{classBluetoothServer_ab4b42cafe04f9b2d50abfd4f0b2986e9}
+
+
+\mbox{[}Slot\mbox{]} Used to send message through bluetooth 
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & \\
+\hline
+\end{DoxyParams}
+\index{Bluetooth\+Server@{Bluetooth\+Server}!start\+Server@{start\+Server}}
+\index{start\+Server@{start\+Server}!Bluetooth\+Server@{Bluetooth\+Server}}
+\subsubsection[{\texorpdfstring{start\+Server(const Q\+Bluetooth\+Address \&local\+Adapter)}{startServer(const QBluetoothAddress &localAdapter)}}]{\setlength{\rightskip}{0pt plus 5cm}void Bluetooth\+Server\+::start\+Server (
+\begin{DoxyParamCaption}
+\item[{const Q\+Bluetooth\+Address \&}]{local\+Adapter}
+\end{DoxyParamCaption}
+)}\hypertarget{classBluetoothServer_a69cbc5ce011231abdbe76cf325b1bc8b}{}\label{classBluetoothServer_a69cbc5ce011231abdbe76cf325b1bc8b}
+
+
+Creates un Smart\+Control server and makes it available. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em local\+Adapter} & \+: the local bluetooth adapter \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+bluetoothserver.\+h\end{DoxyCompactItemize}

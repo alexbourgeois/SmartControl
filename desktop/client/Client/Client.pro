@@ -36,3 +36,6 @@ FORMS    += mainwindow.ui
 CONFIG += mobility
 MOBILITY = 
 
+DISTFILES += \
+    ClassDiagram.qmodel
+

@@ -2,6 +2,7 @@
 
 ClientSC::ClientSC()
 {
+    //initialization
     services.clear();
     isServerReady=false;
     isDiscoveryRunning=false;
@@ -17,6 +18,7 @@ ClientSC::ClientSC()
 
 void ClientSC::ConnectToServer() {
 
+    //Check if the service isn't already in the service list
     for(int i=0 ; i<services.size() ; i++) {
         if(services.contains("SmartControl")) {
             qDebug() << "Connection to existing service";
@@ -25,6 +27,8 @@ void ClientSC::ConnectToServer() {
             break;
         }
     }
+
+    //If there is no client then we can scan
     if(!client) {
         services.clear();
 
@@ -44,9 +48,10 @@ void ClientSC::serviceDiscovered(const QBluetoothServiceInfo service) {
     qDebug() << "Found new service:" << service.serviceName()
                  << " " << service.serviceDescription();
 
-    //Save every services in a list
+    //Save each service in a list
     services.insert(service.serviceName(), service);
 
+    //if the good service is found then we can connect
     if(service.serviceName()=="SmartControl")
         CreateClient(service);
 }
@@ -94,10 +99,6 @@ void ClientSC::GetSensor(int sensor, int interval) {
         }
         timer->setInterval(interval);
         timer->start();
-
-//        emit sendMessage("value");
-    //else
-      //  qDebug("Error : server not ready");
 }
 
 void ClientSC::askSensor() {
@@ -111,9 +112,6 @@ void ClientSC::analyzeMessage(const QString &sender, const QString &msg) {
     if(msg=="ready")
         isServerReady=true;
 
-    if(msg=="stop")
-        StopClient();
-
     if(msg.contains(":")){
         QStringList list = msg.split(" ");
         if(list.size()<=3)
@@ -124,8 +122,6 @@ void ClientSC::analyzeMessage(const QString &sender, const QString &msg) {
 
         emit valuesAcquired(activeSensor.toInt(), x.toFloat(), y.toFloat(), z.toFloat());
 
-        //PAS BIEN
-        //emit valuesAcquired(1, x.toFloat(), y.toFloat(), z.toFloat());
         isServerReady=true;
     }
 }
@@ -138,6 +134,7 @@ void ClientSC::StopClient() {
         emit sendMessage("stop");
         client->stopClient();
     }
+    client=NULL;
 }
 
 void ClientSC::connected(const QString &name) {
@@ -148,11 +145,13 @@ void ClientSC::connected(const QString &name) {
 
 void ClientSC::clientDisconnected(const QString &name) {
     qDebug() << "Disconnected from " << name;
+    isConnected=false;
+    StopClient();
 }
 
 void ClientSC::clientDisconnected() {
     qDebug() << "Disconnected from somebody";
     isConnected=false;
-    client->stopClient();
+    StopClient();
 
 }

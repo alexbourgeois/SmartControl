@@ -14,6 +14,9 @@ namespace Ui {
 class MainWindow;
 }
 
+/**
+ * @brief The MainWindow class is the main windwo, it contains the UI and uses the ClientSC class.
+ */
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
